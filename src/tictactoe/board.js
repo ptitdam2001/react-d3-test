@@ -21,6 +21,10 @@ function calculateWinner(squares) {
     return null;
 }
 
+function gameIsFinished(squares) {
+    return squares.filter(square => square !== null).length === squares.length;
+}
+
 export class Board extends Component {
     constructor(props) {
         super(props);
@@ -43,18 +47,33 @@ export class Board extends Component {
         });
     }
 
+    restartGame() {
+        this.setState({
+            squares: Array(9).fill(null),
+            xIsNext: true
+        })
+    }
+
     renderSquare(i) {
         return <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)}/>;
     }
 
     render() {
         const winner = calculateWinner(this.state.squares);
+        const isFinished = gameIsFinished(this.state.squares);
         let status;
+        let restartButton;
 
         if (winner) {
             status = 'winner :'+ winner;
+        } else if(isFinished) {
+            status = 'No winner';
         } else {
             status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+        }
+
+        if (isFinished || winner) {
+            restartButton = <button className="restart-btn" onClick={() => this.restartGame()}>Restart</button>
         }
 
         return (
@@ -74,6 +93,10 @@ export class Board extends Component {
                     {this.renderSquare(6)}
                     {this.renderSquare(7)}
                     {this.renderSquare(8)}
+                </div>
+                <hr />
+                <div className="action">
+                    {restartButton}
                 </div>
             </div>
         );
