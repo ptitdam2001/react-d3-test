@@ -1,0 +1,21 @@
+.menu {
+    display: flex;
+    flex-direction: row;
+    background: #c1c1c1;
+    height: 50px;
+    margin: 0;
+    padding: 0 10px;
+}
+
+.menu li {
+    display: flex;
+    padding: 0 10px;
+    flex: 1 1;
+    box-shadow: #000 1px 1px;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
