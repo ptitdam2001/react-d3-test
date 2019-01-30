@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import { Board } from '../tictactoe/board';
-import { Chart1 } from '../chart1/chart1';
+import { MainBarChart } from './mainBarChart';
 
 import './main.css';
 
@@ -21,7 +21,7 @@ export class Main extends Component {
                     <hr />
                     <div className="content">
                         <Route path="/tictactoe" component={Board} />
-                        <Route path="/chart" component={Chart1} />
+                        <Route path="/chart" component={MainBarChart} />
                     </div>
                 </div>
             </Router>
