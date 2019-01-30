@@ -49,6 +49,8 @@ export class BarChart extends Component {
       .attr('x', (d, i) => i * 25)
       .attr('width', 25)
       .attr('height', d => yScale(d))
+      .style('stroke', '#9a8b7a')
+      .style('stroke-width', '1px');
   }
 
   render() {
