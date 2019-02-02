@@ -12,7 +12,7 @@ export class MainLineChart extends Component {
 
     return (
       <div style={{padding: '10px'}}>
-        <LineChart data={rawData} height={500} width={500}></LineChart>
+        <LineChart data={rawData} height={500} width={800}></LineChart>
         <button onClick={() => this.randomData()}>Generate</button>
       </div>
     )

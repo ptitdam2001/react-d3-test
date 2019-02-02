@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import {max} from 'd3-array';
-import {select} from 'd3-selection';
+import {select, event} from 'd3-selection';
 import {scaleLinear} from 'd3-scale';
 import {axisBottom, axisLeft} from 'd3-axis';
 import {line, curveMonotoneX} from 'd3-shape';
@@ -63,6 +63,7 @@ export class LineChart extends Component {
 
     updateLine() {
         if (this.props.data) {
+            const tip = select(this.tip);
             const numberOfData = this.props.data.length;
 
             const domainX = this.x.domain([0, numberOfData + 1]);
@@ -87,7 +88,16 @@ export class LineChart extends Component {
                 .attr('class', 'dot')
                 .attr('cx', (d, i) => domainX(i))
                 .attr('cy', d => domainY(d))
-                .attr('r', 2);
+                .attr('r', 2)
+                .on('mousemove', data => {
+                    tip.style('position', 'absolute')
+                      .style('left', `${event.pageX + 10}px`)
+                      .style('top', `${event.pageY + 20}px`)
+                      .style('display', 'inline-block')
+                      .style('opacity', '0.9')
+                      .html(`<div><strong>${data}</strong></div>`)
+                  })
+                  .on('mouseout', () => tip.style('display', 'none'));;
 
             // update axis
             this.svg.select('.x-axis').call(axisBottom(domainX));
