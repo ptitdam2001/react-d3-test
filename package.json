@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
     "d3-array": "^2.0.3",
     "d3-axis": "^1.0.12",
     "d3-brush": "^1.0.6",
@@ -16,7 +17,7 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-script": "^2.0.5",
-    "react-scripts": "^2.1.8"
+    "react-scripts": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,6 +35,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "node-sass": "^4.11.0"
+    "node-sass": "^4.12.0"
   }
 }
