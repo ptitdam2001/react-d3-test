@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import { Board } from '../tictactoe/board';
 import { MainBarChart } from './mainBarChart';
 import { MainLineChart } from './mainLineChart';
@@ -10,6 +10,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 import './main.css';
+import { AjaxCall } from '../ajaxCalls/ajaxCall';
 
 export class Main extends Component {
     state = {
@@ -28,39 +29,20 @@ export class Main extends Component {
                 <AppBar position="static">
                     <Tabs variant="fullWidth" value={value} onChange={this.handleChange}>
                         <Tab label="Tic Tac toe" component={Link} to="/tictactoe"></Tab>
-                        <Tab label="Chart bar" component={Link} to="chart"></Tab>
+                        <Tab label="Chart bar" component={Link} to="/chart"></Tab>
                         <Tab label="Line chart" component={Link} to="/line-chart"></Tab>
+                        <Tab label="Ajax call" component={Link} to="/ajax-call"></Tab>
                     </Tabs>
                 </AppBar>
                 <div className="content">
-                    <Route path="/tictactoe" component={Board} />
-                    <Route path="/chart" component={MainBarChart} />
-                    <Route path="/line-chart" component={MainLineChart} />
-                    <Route path="/weather" component={Weather} />
-                </div>
-                {/* <div className="content">
-                    <ul className="menu">
-                        <li>
-                            <Link to="/tictactoe">Tic tac toe</Link>
-                        </li>
-                        <li>
-                            <Link to="/chart">Chart bar</Link>
-                        </li>
-                        <li>
-                            <Link to="/line-chart">Line chart</Link>
-                        </li>
-                        <li>
-                            <Link to="/weather">Weather</Link>
-                        </li>
-                    </ul>
-                    <hr />
-                    <div className="content">
+                    <Switch>
                         <Route path="/tictactoe" component={Board} />
                         <Route path="/chart" component={MainBarChart} />
                         <Route path="/line-chart" component={MainLineChart} />
                         <Route path="/weather" component={Weather} />
-                    </div>
-                </div> */}
+                        <Route path="/ajax-call" component={AjaxCall} />
+                    </Switch>
+                </div>
             </Router>
         );
     }
