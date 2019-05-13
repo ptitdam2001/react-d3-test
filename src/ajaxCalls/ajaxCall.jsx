@@ -4,7 +4,7 @@ import { CountryInfo } from "./countryInfo";
 
 const useStyles = {
     list: {
-        overflowY: 'scroll',
+        // overflowY: 'scroll',
         height: '100%'
     }
 };
@@ -28,8 +28,8 @@ export class CountryPage extends Component {
         const {countries, selected} = this.state;
         return (
             <React.Fragment>
-                <Grid container>
-                    <Grid item xs={4}>
+                <Grid container style={{height: '100%'}}>
+                    <Grid item xs={4} style={{maxHeight: '100%', overflow: 'auto'}}>
                         <List component="nav" style={classes.list}>
                             {
                                 countries.map((country, index) =>
