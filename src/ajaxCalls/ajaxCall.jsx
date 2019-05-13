@@ -43,8 +43,12 @@ export class CountryPage extends Component {
                             }
                         </List>
                     </Grid>
-                    <Grid item xs={8}>
-                        <CountryInfo country={selected}></CountryInfo>
+                    <Grid item xs={8} style={{padding: '8px'}}>
+                        <Grid container spacing={8} alignItems="stretch" direction="row">
+                            <Grid item xs={12}>
+                                <CountryInfo country={selected}></CountryInfo>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </React.Fragment>
