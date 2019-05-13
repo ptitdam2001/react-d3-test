@@ -10,7 +10,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 import './main.css';
-import { AjaxCall } from '../ajaxCalls/ajaxCall';
+import { CountryPage } from '../ajaxCalls/ajaxCall';
 
 export class Main extends Component {
     state = {
@@ -31,7 +31,7 @@ export class Main extends Component {
                         <Tab label="Tic Tac toe" component={Link} to="/tictactoe"></Tab>
                         <Tab label="Chart bar" component={Link} to="/chart"></Tab>
                         <Tab label="Line chart" component={Link} to="/line-chart"></Tab>
-                        <Tab label="Ajax call" component={Link} to="/ajax-call"></Tab>
+                        <Tab label="Countries" component={Link} to="/countries"></Tab>
                     </Tabs>
                 </AppBar>
                 <div className="content">
@@ -40,7 +40,7 @@ export class Main extends Component {
                         <Route path="/chart" component={MainBarChart} />
                         <Route path="/line-chart" component={MainLineChart} />
                         <Route path="/weather" component={Weather} />
-                        <Route path="/ajax-call" component={AjaxCall} />
+                        <Route path="/countries" component={CountryPage} />
                     </Switch>
                 </div>
             </Router>
