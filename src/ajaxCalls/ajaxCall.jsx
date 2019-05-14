@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ListItemAvatar, Avatar, ListItemText, ListItem, List, Grid } from "@material-ui/core";
 import { CountryInfo } from "./countryInfo";
+import { WorldMap } from "./worldMap";
 
 const useStyles = {
     list: {
@@ -47,6 +48,7 @@ export class CountryPage extends Component {
                         <Grid container spacing={8} alignItems="stretch" direction="row">
                             <Grid item xs={12}>
                                 <CountryInfo country={selected}></CountryInfo>
+                                <WorldMap></WorldMap>
                             </Grid>
                         </Grid>
                     </Grid>

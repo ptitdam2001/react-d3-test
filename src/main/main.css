@@ -3,3 +3,7 @@
     flex: 1;
     flex-direction: column;
 }
+
+.leaflet-container{
+    background-color:#c5e8ff;
+}
