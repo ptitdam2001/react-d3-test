@@ -47,8 +47,13 @@ export class CountryPage extends Component {
                     <Grid item xs={8} style={{padding: '8px'}}>
                         <Grid container spacing={8} alignItems="stretch" direction="row">
                             <Grid item xs={12}>
-                                <CountryInfo country={selected}></CountryInfo>
-                                <WorldMap></WorldMap>
+                                <CountryInfo
+                                    country={selected}
+                                    footer={ !selected ? null : (
+                                        <WorldMap country={selected} height={400} width={600}></WorldMap>
+                                    )}>
+                                </CountryInfo>
+
                             </Grid>
                         </Grid>
                     </Grid>

@@ -25,6 +25,9 @@ export class CountryInfo extends Component {
                             region: {this.props.country.region + ' - ' + this.props.country.subregion}
                             <br />
                         </Typography>
+                        <div>
+                            {this.props.footer}
+                        </div>
                     </CardContent>
 
                 </Card>
