@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { ListItemAvatar, Avatar, ListItemText, ListItem, List, Grid } from "@material-ui/core";
+import { ListItemAvatar, Avatar, ListItemText, ListItem, List, Grid, FormControl, TextField, InputAdornment } from "@material-ui/core";
+import SearchIcon from '@material-ui/icons/Search';
 import { CountryInfo } from "./countryInfo";
 import { WorldMap } from "./worldMap";
 
@@ -15,7 +16,8 @@ export class CountryPage extends Component {
         super(props);
         this.state= {
             countries: [],
-            selected: null
+            selected: null,
+            searchText: null
         };
     }
 
@@ -26,19 +28,40 @@ export class CountryPage extends Component {
 
     render() {
         const classes = useStyles;
-        const {countries, selected} = this.state;
+        const {countries, selected, searchText} = this.state;
+
+        const countriesToDisplay = searchText
+            ? countries.filter(country => (country.name.toLowerCase()).includes(searchText.toLowerCase())) : countries;
+
         return (
             <React.Fragment>
                 <Grid container style={{height: '100%'}}>
                     <Grid item xs={4} style={{maxHeight: '100%', overflow: 'auto'}}>
+                        <FormControl fullWidth={true}>
+                            <TextField
+                                label="Search country"
+                                id="search-country"
+                                fullWidth={true}
+                                margin="normal"
+                                name="searchText"
+                                onChange={this.handleChangeSearchText.bind(this)}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    )
+                                }}
+                            />
+                        </FormControl>
                         <List component="nav" style={classes.list}>
                             {
-                                countries.map((country, index) =>
+                                countriesToDisplay.map((country, index) =>
                                     <ListItem key={index} alignItems="flex-start" divider={true} button={true} onClick={this.chooseCountry.bind(this, country)}>
                                         <ListItemAvatar>
                                             <Avatar alt={country.name} src={country.flag} />
                                         </ListItemAvatar>
-                                        <ListItemText primary={country.name}/>
+                                        <ListItemText primary={country.name} secondary={country.region}/>
                                     </ListItem>
                                 )
                             }
@@ -60,6 +83,10 @@ export class CountryPage extends Component {
                 </Grid>
             </React.Fragment>
         );
+    }
+
+    handleChangeSearchText(event) {
+        this.setState({searchText: event.target.value});
     }
 
     chooseCountry(country) {
