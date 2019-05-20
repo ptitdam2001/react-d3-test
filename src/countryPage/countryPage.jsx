@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ListItemAvatar, Avatar, ListItemText, ListItem, List, Grid, FormControl, TextField, InputAdornment } from "@material-ui/core";
+import { ListItemAvatar, Avatar, ListItemText, ListItem, List, Grid, FormControl, TextField, InputAdornment, LinearProgress } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import { CountryInfo } from "./countryInfo";
 import { WorldMap } from "./worldMap";
@@ -54,6 +54,7 @@ export class CountryPage extends Component {
                                 }}
                             />
                         </FormControl>
+                        { countries.length === 0 ? <LinearProgress /> : null}
                         <List component="nav" style={classes.list}>
                             {
                                 countriesToDisplay.map((country, index) =>
