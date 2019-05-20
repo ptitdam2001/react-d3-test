@@ -10,7 +10,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 import './main.css';
-import { CountryPage } from '../ajaxCalls/ajaxCall';
+import { CountryPage } from '../countryPage/countryPage';
 
 export class Main extends Component {
     state = {
