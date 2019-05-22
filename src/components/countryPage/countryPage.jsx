@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import { ListItemAvatar, Avatar, ListItemText, ListItem, List, Grid, FormControl, TextField, InputAdornment, LinearProgress } from "@material-ui/core";
+import { Grid, FormControl, TextField, InputAdornment, LinearProgress } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import { CountryInfo, WorldMap } from "../index";
-
-const useStyles = {
-    list: {
-        // overflowY: 'scroll',
-        height: '100%'
-    }
-};
+import { CountryList } from "./countryList";
 
 export class CountryPage extends Component {
     constructor(props) {
@@ -26,7 +20,6 @@ export class CountryPage extends Component {
     }
 
     render() {
-        const classes = useStyles;
         const {countries, selected, searchText} = this.state;
 
         const countriesToDisplay = searchText
@@ -54,18 +47,7 @@ export class CountryPage extends Component {
                             />
                         </FormControl>
                         { countries.length === 0 ? <LinearProgress /> : null}
-                        <List component="nav" style={classes.list}>
-                            {
-                                countriesToDisplay.map((country, index) =>
-                                    <ListItem key={index} alignItems="flex-start" divider={true} button={true} onClick={this.chooseCountry.bind(this, country)}>
-                                        <ListItemAvatar>
-                                            <Avatar alt={country.name} src={country.flag} />
-                                        </ListItemAvatar>
-                                        <ListItemText primary={country.name} secondary={country.region}/>
-                                    </ListItem>
-                                )
-                            }
-                        </List>
+                        <CountryList countries={countriesToDisplay} onSelect={this.chooseCountry.bind(this)}></CountryList>
                     </Grid>
                     <Grid item xs={8} style={{padding: '8px'}}>
                         <Grid container spacing={8} alignItems="stretch" direction="row">
