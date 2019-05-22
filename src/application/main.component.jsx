@@ -1,16 +1,13 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
-import { Board } from '../tictactoe/board';
+import { Board, Weather, CountryPage } from '../components/index';
+
 import { MainBarChart } from './mainBarChart';
 import { MainLineChart } from './mainLineChart';
-import { Weather } from '../weather/weather';
 
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import {AppBar, Tabs, Tab} from '@material-ui/core';
 
 import './main.css';
-import { CountryPage } from '../countryPage/countryPage';
 
 export class Main extends Component {
     state = {

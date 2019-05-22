@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { ListItemAvatar, Avatar, ListItemText, ListItem, List, Grid, FormControl, TextField, InputAdornment, LinearProgress } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
-import { CountryInfo } from "./countryInfo";
-import { WorldMap } from "./worldMap";
+import { CountryInfo, WorldMap } from "../index";
 
 const useStyles = {
     list: {

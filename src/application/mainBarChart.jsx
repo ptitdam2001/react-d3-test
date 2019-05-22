@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BarChart } from '../barChart/barChart';
+import { BarChart } from '../components/index';
 
 export class MainBarChart extends Component {
   constructor(props) {

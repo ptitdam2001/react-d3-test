@@ -70,3 +70,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ## Libraries
 
 - [React router](https://reacttraining.com/react-router/)
+- [Redux](https://redux.js.org/)
+
+## APIs
+
+- [Rest countries](https://restcountries.eu/#api-endpoints-all)
+- [Address](https://adresse.data.gouv.fr/api)
