@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
+
 import { Grid, FormControl, TextField, InputAdornment, LinearProgress } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import { CountryInfo, WorldMap } from "../index";
 import { CountryList } from "./countryList";
 
-export class CountryPage extends Component {
+import { CountryActions } from "../../actions/countries/actions";
+import { CountriesAPI } from "../../services/countriesAPI";
+
+class CountryPage extends Component {
     constructor(props) {
         super(props);
         this.state= {
@@ -14,16 +19,14 @@ export class CountryPage extends Component {
         };
     }
 
-    async componentWillMount() {
-        const data = await this.getData();
-        this.setState({ countries: data });
+    componentWillMount() {
+        this.props.initCountries()
     }
 
     render() {
-        const {countries, selected, searchText} = this.state;
+        const selected = this.state.selected;
 
-        const countriesToDisplay = searchText
-            ? countries.filter(country => (country.name.toLowerCase()).includes(searchText.toLowerCase())) : countries;
+        const countriesToDisplay = this.props.filteredCountries.text ? this.props.filteredCountries.elems : this.props.countries;
 
         return (
             <React.Fragment>
@@ -46,7 +49,7 @@ export class CountryPage extends Component {
                                 }}
                             />
                         </FormControl>
-                        { countries.length === 0 ? <LinearProgress /> : null}
+                        { this.props.countries.length === 0 ? <LinearProgress /> : null}
                         <CountryList countries={countriesToDisplay} onSelect={this.chooseCountry.bind(this)}></CountryList>
                     </Grid>
                     <Grid item xs={8} style={{padding: '8px'}}>
@@ -68,21 +71,31 @@ export class CountryPage extends Component {
     }
 
     handleChangeSearchText(event) {
-        this.setState({searchText: event.target.value});
+        this.props.filterCountries(event.target.value);
     }
 
     chooseCountry(country) {
         this.setState({selected: country});
     }
-
-    async getData() {
-        const promise = new Promise((resolve, reject) =>
-            fetch('https://restcountries.eu/rest/v2/all', {method: 'GET'})
-                .then(response => response.json())
-                .catch(reject)
-                .then(resolve)
-        );
-
-        return await promise;
-    }
 }
+
+// Define attribute from store
+function mapStateToProps(state) {
+    return {
+        countries: state.elems,
+        filteredCountries: state.find
+    };
+}
+
+// Define function into props from store.dispatch
+function mapDispatchToProps(dispatch, props) {
+    return Object.assign({}, props, {
+        initCountries: async () => {
+            const data = await CountriesAPI.getData();
+            dispatch(CountryActions.set_countries(data));
+        },
+        filterCountries: text => dispatch(CountryActions.find_country(text)),
+    });
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CountryPage);

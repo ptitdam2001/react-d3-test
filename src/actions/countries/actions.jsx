@@ -15,16 +15,15 @@ export class CountryActions {
         };
     }
 
-    static get_Countries(dispatch) {
+    static get_Countries() {
         return {
-            type: ACTIONS.GET_ALL,
-            dispatch
+            type: ACTIONS.GET_ALL
         };
     }
 
     static fetch_countries() {
         return {
-            type: ACTIONS.FETCH_COUNTRIES
+            type: ACTIONS.FETCH_COUNTRIES,
         }
     }
 }
